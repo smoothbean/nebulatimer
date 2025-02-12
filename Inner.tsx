@@ -13,7 +13,7 @@ export default function Inner() {
   const [roundTime, setRoundTime] = useState<Moment>(moment('05:00', 'mm:ss'));
   const [restTime, setRestTime] = useState<Moment>(moment('01:30', 'mm:ss'));
   const [preRoll, setPreRoll] = useState<boolean>(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<any>(null);
 
   const [focusedButton, setFocusedButton] = useState<number | null>(null);
 
@@ -43,7 +43,7 @@ export default function Inner() {
   const handleToggleRoll = () => {
     if (timerState === 'rolling' || timerState === 'resting') {
       setCurrentTime(roundTime);
-      clearInterval(intervalRef.current as NodeJS.Timeout);
+      clearInterval(intervalRef.current);
       intervalRef.current = null;
       setTimerState('stopped');
     } else {
@@ -61,7 +61,7 @@ export default function Inner() {
 
   const handlePause = () => {
     setTimerState('paused');
-    clearInterval(intervalRef.current as NodeJS.Timeout);
+    clearInterval(intervalRef.current);
     intervalRef.current = null;
   };
 

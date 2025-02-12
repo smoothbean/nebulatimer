@@ -1,25 +1,34 @@
 {
-  "name": "TVTest",
-  "displayName": "TVTest",
-  "extra": {
-    "eas": {
-      "projectId": "9a0cde58-0736-49ce-a74e-f5658c848522"
+  "expo": {
+    "platforms": [
+      "android"
+    ],
+    "isTv": true,
+    "plugins": [
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "androidTVBanner": "./assets/images/nebulalogo.png"
+        }
+      ]
+    ],
+    "android": {
+      "splash": {
+        "image": "./assets/images/nebulalogo.png"
+      },
+      "package": "com.smoothbean.tvtimer"
+    },
+    "ios": {
+      "isDisabled": true,
+      "bundleIdentifier": "com.smoothbean.tvtimer"
+    },
+    "newArchEnabled": true,
+    "name": "tvtimer",
+    "slug": "tvtimer",
+    "extra": {
+      "eas": {
+        "projectId": "b35086b8-7c00-4921-9454-d447eceb2cf4"
+      }
     }
-  },
-  "icon": "./assets/images/nebulalogo.png",
-  "splash": {
-    "image": "./assets/images/nebulalogo.png",
-    "resizeMode": "contain",
-    "backgroundColor": "#ffffff"
-  },
-  "android": {
-    "package": "com.smoothbean.tvtest",
-    "adaptiveIcon": {
-      "foregroundImage": "./assets/images/nebulalogo.png",
-      "backgroundColor": "#ffffff"
-    }
-  },
-  "ios": {
-    "bundleIdentifier": "com.smoothbean.tvtest"
   }
 }
