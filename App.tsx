@@ -1,118 +1,72 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import Inner from './Inner';
+import React, { useState } from 'react';
+import moment from 'moment';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const img = require('./assets/images/nebulalogo.png');
+const backgroundImg = require('./assets/images/nebula.jpg');
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default function App() {
+  const [currentTime, setCurrentTime] = useState(moment(new Date(), 'mm:ss'));
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+  setTimeout(() => {
+    setCurrentTime(moment(new Date(), 'mm:ss'));
+  }, 1000);
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      <View style={styles.timeWrapper}>
+        <Text style={styles.time}>{currentTime.format('HH:mm:ss')}</Text>
+      </View>
+      <ImageBackground
+        source={backgroundImg}
+        resizeMode="stretch"
+        style={styles.backgroundImg}
+      >
+        <View style={styles.fullWidth}>
+          <Image source={img} style={styles.logo} />
+          <Inner />
+        </View>
+      </ImageBackground>
     </View>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  fullWidth: {
+    flex: 1,
+    alignItems: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  logo: {
+    width: 200,
+    height: 200,
+    margin: 20,
   },
-  highlight: {
-    fontWeight: '700',
+  backgroundImg: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'stretch',
+  },
+  text: {
+    width: null,
+    color: 'white',
+    fontSize: 20,
+    lineHeight: 84,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#000000c0',
+  },
+  timeWrapper: {
+    position: 'absolute',
+    zIndex: 1000,
+    right: 10,
+  },
+  time: {
+    fontSize: 25,
+    color: '#fff',
   },
 });
-
-export default App;
