@@ -14,14 +14,14 @@ export default function TimerControl({
   const btnStyle = {
     ...styles.btn,
     ...{
-      backgroundColor: focusedButton === btnKey ? '#FFD700' : '#841584',
+      backgroundColor: focusedButton === btnKey ? '#db65db' : '#841584',
     },
   };
 
   const btn2Style = {
     ...styles.btn,
     ...{
-      backgroundColor: focusedButton === btnKey + 1 ? '#FFD700' : '#841584',
+      backgroundColor: focusedButton === btnKey + 1 ? '#db65db' : '#841584',
     },
   };
 

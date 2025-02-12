@@ -1,7 +1,8 @@
 {
   "expo": {
     "platforms": [
-      "android"
+      "android",
+      "web"
     ],
     "isTv": true,
     "plugins": [
@@ -16,15 +17,15 @@
       "splash": {
         "image": "./assets/images/nebulalogo.png"
       },
-      "package": "com.smoothbean.tvtimer"
+      "package": "com.smoothbean.nebulartimer"
     },
     "ios": {
       "isDisabled": true,
-      "bundleIdentifier": "com.smoothbean.tvtimer"
+      "bundleIdentifier": "com.smoothbean.nebulartimer"
     },
     "newArchEnabled": true,
-    "name": "tvtimer",
-    "slug": "tvtimer",
+    "name": "nebulartimer",
+    "slug": "nebulartimer",
     "extra": {
       "eas": {
         "projectId": "b35086b8-7c00-4921-9454-d447eceb2cf4"
