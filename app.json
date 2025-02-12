@@ -1,4 +1,25 @@
 {
   "name": "TVTest",
-  "displayName": "TVTest"
+  "displayName": "TVTest",
+  "extra": {
+    "eas": {
+      "projectId": "9a0cde58-0736-49ce-a74e-f5658c848522"
+    }
+  },
+  "icon": "./assets/images/nebulalogo.png",
+  "splash": {
+    "image": "./assets/images/nebulalogo.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "android": {
+    "package": "com.smoothbean.tvtest",
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/images/nebulalogo.png",
+      "backgroundColor": "#ffffff"
+    }
+  },
+  "ios": {
+    "bundleIdentifier": "com.smoothbean.tvtest"
+  }
 }

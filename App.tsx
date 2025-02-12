@@ -16,7 +16,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.timeWrapper}>
-        <Text style={styles.time}>{currentTime.format('HH:mm:ss')}</Text>
+        <Text style={styles.time}>{currentTime.format('HH:mm')}</Text>
       </View>
       <ImageBackground
         source={backgroundImg}
