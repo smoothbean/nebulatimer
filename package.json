@@ -18,6 +18,13 @@
     "react-native": "npm:react-native-tvos@0.76.7-0",
     "react-native-sound": "^0.11.2"
   },
+  "overrides": {
+    "react-native-sound": {
+      "peerDependencies": {
+        "react-native": "*"
+      }
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
