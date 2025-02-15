@@ -1,4 +1,8 @@
 {
   "name": "nebulatimer",
-  "displayName": "nebulatimer"
+  "extra": {
+    "eas": {
+      "projectId": "efa55616-81c8-41fa-95e6-9be604228558"
+    }
+  }
 }
