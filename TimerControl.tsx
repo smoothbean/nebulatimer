@@ -7,48 +7,23 @@ export default function TimerControl({
   add,
   take,
   disabled,
-  addBtnKey,
-  takeBtnKey,
-  focusedButton,
-  // setFocusedButton,
 }: any) {
-  const btnStyle = {
-    ...styles.btn,
-    ...{
-      backgroundColor: focusedButton === addBtnKey ? '#db65db' : '#841584',
-    },
-  };
-
-  const btn2Style = {
-    ...styles.btn,
-    ...{
-      backgroundColor: focusedButton === takeBtnKey ? '#db65db' : '#841584',
-    },
-  };
-
   return (
     <View style={styles.card}>
       <Text style={styles.text}>{title}</Text>
       <View style={styles.timeCtrl}>
         <TouchableHighlight
-          focusable
-          style={btnStyle}
-          key={takeBtnKey}
+          style={styles.btn}
           onPress={take}
           disabled={disabled}
-        // onFocus={() => setFocusedButton(takeBtnKey)}
         >
           <Text style={styles.text}>-</Text>
         </TouchableHighlight>
         <Text style={styles.text}>{value}</Text>
         <TouchableHighlight
-          focusable
-          style={btn2Style}
-          key={addBtnKey}
+          style={styles.btn}
           onPress={add}
           disabled={disabled}
-        // onFocus={() => setFocusedButton(addBtnKey)}
-
         >
           <Text style={styles.text}>+</Text>
         </TouchableHighlight>

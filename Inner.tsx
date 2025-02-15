@@ -6,11 +6,10 @@ import Sound from 'react-native-sound';
 
 type TimerState = 'stopped' | 'rolling' | 'resting' | 'paused';
 
-
 const sounds = {
-  timer: require(`./assets/sounds/timer.mp3`),
-  timerEnd: require(`./assets/sounds/timer_end.mp3`),
-}
+  timer: require('./assets/sounds/timer.mp3'),
+  timerEnd: require('./assets/sounds/timer_end.mp3'),
+};
 
 export default function Inner() {
   const [timerState, setTimerState] = useState<TimerState>('stopped');
@@ -19,7 +18,6 @@ export default function Inner() {
   const [restTime, setRestTime] = useState<Moment>(moment('01:30', 'mm:ss'));
   const [preRoll, setPreRoll] = useState<boolean>(false);
   const intervalRef = useRef<any>(null);
-  const [focusedButton, setFocusedButton] = useState<number | null>(null);
 
   // Play sound using react-native-sound
   const playSound = (soundFile: string) => {
@@ -96,14 +94,11 @@ export default function Inner() {
       <Text style={styles.periodType}>({timerState})</Text>
       <View style={styles.cards}>
         <TimerControl
-          focusedButton={focusedButton}
-          takeBtnKey={1}
           take={() => {
             const newVal = roundTime.clone().subtract(10, 'seconds');
             setRoundTime(newVal);
             setCurrentTime(newVal);
           }}
-          addBtnKey={2}
           add={() => {
             const newVal = roundTime.clone().add(10, 'seconds');
             setRoundTime(newVal);
@@ -112,29 +107,19 @@ export default function Inner() {
           title="Round Time"
           value={roundTime.format('mm:ss')}
           disabled={preRoll || timerState !== 'stopped'}
-          setFocusedButton={setFocusedButton}
         />
         <TimerControl
-          takeBtnKey={3}
-          focusedButton={focusedButton}
           take={() => setRestTime(restTime.clone().subtract(10, 'seconds'))}
-          addBtnKey={4}
           add={() => setRestTime(restTime.clone().add(10, 'seconds'))}
           title="Rest Time"
           value={restTime.format('mm:ss')}
           disabled={preRoll || timerState !== 'stopped'}
-          setFocusedButton={setFocusedButton}
         />
       </View>
       <View style={styles.row}>
         {!preRoll && timerState === 'rolling' && (
           <TouchableHighlight
-            key={5}
-            focusable
-            style={[
-              styles.btn,
-              { backgroundColor: focusedButton === 5 ? '#272928' : '#841584' },
-            ]}
+            style={styles.btn}
             onPress={handlePause}
             disabled={preRoll}
           >
@@ -143,13 +128,8 @@ export default function Inner() {
         )}
         <View style={styles.marginLeft}>
           <TouchableHighlight
-            key={6}
             hasTVPreferredFocus={true}
-            focusable
-            style={[
-              styles.btn,
-              { backgroundColor: focusedButton === 6 ? '#272928' : '#841584' },
-            ]}
+            style={styles.btn}
             onPress={handleToggleRoll}
             disabled={preRoll}
           >
