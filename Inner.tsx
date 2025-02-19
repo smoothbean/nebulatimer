@@ -18,6 +18,9 @@ export default function Inner() {
   const [restTime, setRestTime] = useState<Moment>(moment('01:30', 'mm:ss'));
   const [preRoll, setPreRoll] = useState<boolean>(false);
   const intervalRef = useRef<any>(null);
+  const [focusedButton, setFocusedButton] = useState<number | false>(false);
+
+  const capitalize = (s: string) => s && String(s[0]).toUpperCase() + String(s).slice(1);
 
   // Play sound using react-native-sound
   const playSound = (soundFile: string) => {
@@ -40,6 +43,8 @@ export default function Inner() {
       });
     });
   };
+
+  useEffect(() => { console.log('plss', focusedButton) }, [focusedButton]);
 
   useEffect(() => {
     if (currentTime.format('mm:ss') === '00:00') {
@@ -84,6 +89,11 @@ export default function Inner() {
     intervalRef.current = null;
   };
 
+  const handleFocusChange = (key: number) => {
+    console.log('oioioi', key);
+    setFocusedButton(key);
+  };
+
   return (
     <TVFocusGuideView style={styles.container}>
       <Text style={styles.time}>
@@ -91,14 +101,16 @@ export default function Inner() {
           ? 'Get Ready!'
           : currentTime.format('mm:ss')}
       </Text>
-      <Text style={styles.periodType}>({timerState})</Text>
+      <Text style={styles.periodType}>{capitalize(timerState)}</Text>
       <View style={styles.cards}>
         <TimerControl
+          takeKey={1}
           take={() => {
             const newVal = roundTime.clone().subtract(10, 'seconds');
             setRoundTime(newVal);
             setCurrentTime(newVal);
           }}
+          addKey={2}
           add={() => {
             const newVal = roundTime.clone().add(10, 'seconds');
             setRoundTime(newVal);
@@ -107,13 +119,19 @@ export default function Inner() {
           title="Round Time"
           value={roundTime.format('mm:ss')}
           disabled={preRoll || timerState !== 'stopped'}
+          onFocus={handleFocusChange}
+          focusedButton={focusedButton}
         />
         <TimerControl
+          takeKey={3}
           take={() => setRestTime(restTime.clone().subtract(10, 'seconds'))}
+          addKey={4}
           add={() => setRestTime(restTime.clone().add(10, 'seconds'))}
           title="Rest Time"
           value={restTime.format('mm:ss')}
           disabled={preRoll || timerState !== 'stopped'}
+          onFocus={handleFocusChange}
+          focusedButton={focusedButton}
         />
       </View>
       <View style={styles.row}>
@@ -122,6 +140,7 @@ export default function Inner() {
             style={styles.btn}
             onPress={handlePause}
             disabled={preRoll}
+            onFocus={() => handleFocusChange(5)}
           >
             <Text style={styles.text}>Pause</Text>
           </TouchableHighlight>
@@ -132,6 +151,7 @@ export default function Inner() {
             style={styles.btn}
             onPress={handleToggleRoll}
             disabled={preRoll}
+            onFocus={() => handleFocusChange(6)}
           >
             <Text style={styles.text}>
               {timerState === 'paused' || timerState === 'stopped'
@@ -154,8 +174,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 100,
-    backgroundColor: '#000000c0',
-    marginBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
     textAlign: 'center',
@@ -164,14 +182,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 12,
-    backgroundColor: '#000000c0',
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 10,
   },
   cards: {
     flexDirection: 'row',
-    marginTop: 25,
   },
   row: {
     flexDirection: 'row',
@@ -181,7 +197,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
     marginLeft: 20,
     marginRight: 20,

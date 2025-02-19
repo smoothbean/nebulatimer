@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   timeWrapper: {
     position: 'absolute',
     zIndex: 1000,
-    right: 10,
+    right: 80,
+    top: 60,
   },
   time: {
     fontSize: 25,
