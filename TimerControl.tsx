@@ -26,7 +26,7 @@ export default function TimerControl({
         >
           <Text style={styles.text}>-</Text>
         </TouchableHighlight>
-        <Text style={styles.text}>{value}</Text>
+        <Text style={{ ...styles.text, ...{ fontSize: 28 } }}>{value}</Text>
         <TouchableHighlight
           style={{ ...styles.btn, ...focusedButton === addKey ? { backgroundColor: '#FBCC09' } : {} }}
           onPress={add}
@@ -62,10 +62,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btn: {
-    backgroundColor: '#841584',
+    backgroundColor: '#9962EE',
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 5,
+    borderColor: '#9962EE',
+    borderWidth: 1,
     borderRadius: 5,
   },
 });

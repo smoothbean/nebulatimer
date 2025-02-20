@@ -203,8 +203,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   btn: {
-    backgroundColor: '#841584',
+    backgroundColor: '#9962EE',
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: '#9962EE',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
   },
 });

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import Inner from './Inner';
 
-const img = require('./assets/images/nebulalogo.png');
+const img = require('./assets/images/nebulalogored.png');
 const backgroundImg = require('./assets/images/nebula.jpg');
 
 export default function App() {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     top: 60,
   },
   time: {
-    fontSize: 25,
+    fontSize: 28,
     color: '#fff',
   },
 });
